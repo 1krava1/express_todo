@@ -1,0 +1,11 @@
+extends layout
+
+block content
+    h1= 'Todo'
+    p Welcome to #{title}
+    form(action="/todo/create", method="post")
+        label(for="description") description
+        br
+        input(id="description" type="description", name="description", value='Description')
+        br
+        button(type="submit") Submit

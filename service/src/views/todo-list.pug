@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    h1= 'Todo'
+    p Welcome to #{title}
+    section
+        div('style'="display: flex;")
+            div status
+            div description
+        each todo in Object.values(todos)
+            form('action'="/todo/" + todo._id, 'method'="PATCH", 'style'="display: flex; padding: 10px; border-bottom: 1px solid;")
+                div('style'="margin: 0 15px 0 0")
+                    input('type'="checkbox", name="status", checked=todo.status)
+                div('style'="margin: 0 15px 0 0")
+                    input('type'="text", name="description", value=todo.description)
+                div
+                    input('type'="submit")

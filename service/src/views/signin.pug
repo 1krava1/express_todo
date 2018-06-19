@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    h1= 'Sign In'
+    p Welcome to #{title}
+    form(method="post")
+        label(for="email") email
+        br
+        input(id="email" type="email", name="email", value=email ? email : 'krava9519@gmail.com')
+        br
+        label(for="password") password
+        br
+        input(id="password" type="password", name="password", value=password ? password : '333333')
+        br
+        button(type="submit") Submit
