@@ -29,4 +29,4 @@ COPY --from=builder /todo-app/src /src
 COPY --from=builder package.json package-lock.json app.js ./
 
 EXPOSE 3000
-CMD ["npm", "run", "start-dev"]
+CMD ["node", "./bin/www"]
