@@ -3,7 +3,7 @@ extends layout
 block content
   h1= 'Sign Up'
   p Welcome to #{title}
-  form(method="post")
+  form(method="post", 'action'="/user/create")
     label(for="login") login
     br
     input(id="login" type="text", name="login", value=login ? login : 'Nick')

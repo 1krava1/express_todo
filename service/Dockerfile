@@ -19,6 +19,9 @@ COPY . .
 ### STAGE 2: Setup ###
 FROM node:8-alpine
 
+RUN mkdir /var/www
+WORKDIR /var/www
+
 ## From 'builder' stage copy over the artifacts in dist folder to default nginx public folder
 COPY --from=builder /todo-app/node_modules /node_modules
 COPY --from=builder /todo-app/bin /bin
@@ -26,4 +29,4 @@ COPY --from=builder /todo-app/src /src
 COPY --from=builder package.json package-lock.json app.js ./
 
 EXPOSE 3000
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "start-dev"]

@@ -8,11 +8,14 @@ class TodoService {
     updateTodo(data) {
         return TodoModel.update(data);
     }
-    getTodoFromDB( data ) {
-        return TodoModel.getTodo( data );
+    deleteTodo(data) {
+        return TodoModel.delete(data);
     }
     getTodos( data ) {
         return TodoModel.getTodos( data );
+    }
+    getTodo( data ) {
+        return TodoModel.getTodo( data );
     }
 }
 module.exports = new TodoService();

@@ -4,4 +4,21 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
+    block header
+      header#header
+        nav
+          ul
+            li
+              a('href'="/user/create") Create user
+            li
+              a('href'="/user/login") Login user
+            li
+              a('href'="/todo/create") Create todo
+            li
+              a('href'="/todo/list-view") List Todo (html)
+            li
+              a('href'="/todo/list") List Todo (json)
     block content
+    block footer
+    block scripts
+        script('type'="application/javascript", 'src'='/scripts/script.js')

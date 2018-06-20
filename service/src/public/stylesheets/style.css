@@ -6,3 +6,23 @@ body {
 a {
   color: #00B7FF;
 }
+
+#header{
+
+}
+#header ul{
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+#header li{
+  padding: 0 15px;
+}
+#header a{
+  padding: 4px 9px;
+  border: 1px solid;
+  border-radius: 3px;
+  text-decoration: none;
+  line-height: 1;
+}

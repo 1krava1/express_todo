@@ -32,11 +32,19 @@ router.get('/list', function(req, res, next){
 router.get('/list-view', function(req, res, next){
     if (req.query.done) {
         TodoService.getTodos({status: true}).then((response) => {
-            res.render('../views/todo-list.pug', {todos: response});
+            res.render('../views/todo-list.pug', {subtitle: "Todo list", todos: response});
         });
     } else {
         TodoService.getTodos().then((response) => {
-            res.render('../views/todo-list.pug', {todos: response});
+            res.render('../views/todo-list.pug', {subtitle: "Todo list", todos: response});
+        });
+    }
+});
+/** Get todo */
+router.get('/:id', function(req, res, next){
+    if (!!req.params.id) {
+        TodoService.getTodo({_id: req.params.id}).then((response) => {
+            res.send(response);
         });
     }
 });
@@ -45,21 +53,17 @@ router.patch('/:id', function(req, res, next){
     let updatedTodo = {};
     if (!!req.params.id) {
         updatedTodo._id = req.params.id;
-        if (req.query.description) updatedTodo.description = req.query.description;
-        if (req.query.status == 'on') { updatedTodo.status = true } else { updatedTodo.status = false };
+        if (req.body.description) updatedTodo.description = req.body.description;
+        if (req.body.status) { updatedTodo.status = true } else { updatedTodo.status = false };
         TodoService.updateTodo(updatedTodo).then((response) => {
             res.send(response);
         });
     }
 });
-/** Update todo */
-router.get('/:id', function(req, res, next){
-    let updatedTodo = {};
+/** Delete todo */
+router.delete('/:id', function(req, res, next){
     if (!!req.params.id) {
-        updatedTodo._id = req.params.id;
-        if (req.query.description) updatedTodo.description = req.query.description;
-        if (req.query.status == 'on') { updatedTodo.status = true } else { updatedTodo.status = false };
-        TodoService.updateTodo(updatedTodo).then((response) => {
+        TodoService.deleteTodo({_id: req.params.id}).then((response) => {
             res.send(response);
         });
     }
