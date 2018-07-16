@@ -9,7 +9,6 @@ router.get('/create', function(req, res, next){
 /** Create todo */
 router.post('/create', function(req, res, next){
     const newTodo = {
-        userId: 1,
         description: req.body.description,
         status: false,
     };

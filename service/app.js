@@ -1,18 +1,19 @@
-var express = require('express');
-var path = require('path');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+const express = require('express');
+const path = require('path');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const databases = require('./src/databases');
 databases.mongodb();
 
-var index = require('./src/routes/index');
+const index = require('./src/routes/index');
 
 const userRoutes = require('./src/routes/user');
 const todoRoutes = require('./src/routes/todo');
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'src/views'));
@@ -27,11 +28,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'src/public')));
 
 // CORS
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+app.use(cors());
 
 app.use('/', index);
 app.use('/user', userRoutes);
@@ -39,7 +36,7 @@ app.use('/todo', todoRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
+  const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
